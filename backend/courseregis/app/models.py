@@ -51,6 +51,7 @@ import uuid
 class Course(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     course_name = models.CharField(max_length=255)
+    course_code = models.CharField(max_length=255)
     credits = models.IntegerField()
     year = models.IntegerField()
     sem = models.IntegerField()

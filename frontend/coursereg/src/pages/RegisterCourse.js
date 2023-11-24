@@ -92,6 +92,7 @@ export const RegisterCourse = () => {
                     <table>
                         <thead>
                             <tr>
+                                <th>Course Code</th>
                                 <th>Course Name</th>
                                 <th>Credits</th>
                                 <th>Action</th>
@@ -100,6 +101,7 @@ export const RegisterCourse = () => {
                         <tbody>
                             {courses.map((course, index) => (
                                 <tr key={course.id}>
+                                    <td>{course.course_code}</td>
                                     <td>{course.course_name}</td>
                                     <td>{course.credits}</td>
                                     <td>

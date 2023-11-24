@@ -80,7 +80,7 @@ class StudentCoursesAPIView(APIView):
                             status=status.HTTP_404_NOT_FOUND)
         print(student)
         registrations = Registration.objects.filter(user_ref=student)
-        courses = registrations.values('course_ref__course_name', 'course_ref__credits', 'course_ref__year', 'course_ref__sem')
+        courses = registrations.values('course_ref__course_name', 'course_ref__credits', 'course_ref__year', 'course_ref__sem','course_ref__course_code')
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
 

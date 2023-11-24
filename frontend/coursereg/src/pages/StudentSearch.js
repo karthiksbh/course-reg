@@ -29,11 +29,17 @@ export const StudentSearch = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                setCourses(data);
+                if (data.length === 0) {
+                    setMessage("No courses found for the student.");
+                } else {
+                    setCourses(data);
+                    setMessage('');
+                }
+
             } else {
                 setMessage("Please enter a valid registration ID of the student");
                 setTimeout(() => {
-                    window.location.href="/student-search";
+                    window.location.href = "/student-search";
                 }, 1000);
             }
         } catch (error) {
@@ -47,19 +53,32 @@ export const StudentSearch = () => {
             return null;
         }
         return (
-            <div>
+            <div class="container">
                 <h3>Student Course History</h3>
-                <ul id="list" className="list">
-                    {courses.map((course, index) => (
-                        <li key={index} className="course-item">
-                            <h4>{course.course_name}</h4>
-                            <p>Credits: {course.credits}</p>
-                            <p>Year: {course.year}</p>
-                            <p>Semester: {course.sem}</p>
-                        </li>
-                    ))}
-                </ul>
+                <table className="course-table">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Code</th>
+                            <th>Credits</th>
+                            <th>Year</th>
+                            <th>Semester</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {courses.map((course, index) => (
+                            <tr key={index} className="course-item">
+                                <td>{course.course_name}</td>
+                                <td>{course.course_code}</td>
+                                <td>{course.credits}</td>
+                                <td>{course.year}</td>
+                                <td>{course.sem}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
+
         );
     };
 

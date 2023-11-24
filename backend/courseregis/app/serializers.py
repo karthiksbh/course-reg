@@ -30,6 +30,7 @@ class CourseSerializer(serializers.Serializer):
     credits = serializers.IntegerField(source='course_ref__credits')
     year = serializers.IntegerField(source='course_ref__year')
     sem = serializers.IntegerField(source='course_ref__sem')
+    course_code = serializers.CharField(source='course_ref__course_code')
     
 class Courseserializer(serializers.ModelSerializer):
     class Meta:
@@ -41,4 +42,4 @@ class CoursesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'course_name', 'credits', 'year', 'sem', 'is_registered']
+        fields = ['id', 'course_name', 'credits', 'year', 'sem', 'is_registered','course_code']
